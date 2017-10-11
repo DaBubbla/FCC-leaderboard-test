@@ -1,28 +1,35 @@
-import React from 'react';
-
+import React, { Component } from 'react';
 import CamperListItem from './camper_list_item.js';
 
-const CamperList = ({ campers }) => { //Campers not defined...
+export default class List extends Component {
 
-//const Items = campers.map((camper)=>{// test camper
-//  return <CamperListItem />
-//});
+  renderList() {
+    return this.props.campers.map((camper, i) => {
+      return (
+        <CamperListItem
+          key={i}
+          number={i+1}
+          camper={camper}
+        />
+      )
+    })
+  }
 
-  return (
-    <table className='table table-striped'>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Username</th>
-          <th>Last 30 days</th>
-          <th>All Time Points</th>
-        </tr>
-    </thead>
-      <tbody>
-        
-      </tbody>
-    </table>
-  );
+  render() {
+    return (
+      <table className='table table-striped'>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Last 30 days</th>
+            <th>All Time Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.renderList()}
+        </tbody>
+      </table>
+    )
+  }
 }
-
-export default CamperList;
